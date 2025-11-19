@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio - Popecards</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 18px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .respuesta {
+            margin-top: 25px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 6px;
+            display: inline-block;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bienvenido a Popecards</h1>
+    <p>Esta es la página de inicio</p>
+
+    <button onclick="probarBackend()">Probar conexión con backend</button>
+
+    <div id="respuesta" class="respuesta">Aquí aparecerá la respuesta</div>
+
+    <script>
+        async function probarBackend() {
+            document.getElementById("respuesta").innerText = "Cargando...";
+
+            try {
+                const res = await fetch("http://localhost:3000/api/saludo");
+                const data = await res.json();
+                document.getElementById("respuesta").innerText = data.mensaje;
+            } catch (e) {
+                document.getElementById("respuesta").innerText = "Error: " + e.message;
+            }
+        }
+    </script>
+</body>
+</html>
