@@ -1,7 +1,16 @@
-const express = require('express');
+import express from "express";
+import cors from "cors";
+
 const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.get('/', (req, res) => res.send('Backend funcionando en Render'));
+// Ejemplo de endpoint
+app.get("/api/saludo", (req, res) => {
+  res.json({ mensaje: "Hola desde el backend!" });
+});
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log('Servidor funcionando en puerto ' + port));
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
